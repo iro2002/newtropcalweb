@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// TODO: Ensure this path is correct
+// TODO: Ensure this path matches your project structure
+// If you don't have a logo yet, comment this import out and use text instead
 import logoImage from '../images/logo.png'; 
 
 const Header = () => {
@@ -52,12 +53,13 @@ const Header = () => {
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-700 ease-in-out px-6 md:px-12 flex justify-between items-center ${
           (isScrolled || isMobileMenuOpen) 
-            ? 'bg-[#022c22]/20 backdrop-blur-lg border-b border-white/5 py-3 shadow-sm' 
+            ? 'bg-[#022c22]/90 backdrop-blur-lg border-b border-white/5 py-3 shadow-sm' 
             : 'bg-transparent py-6'
         }`}
       >
         {/* --- LOGO IMAGE --- */}
         <a href="#" className="relative z-50 block">
+          {/* Ensure logoImage is imported or replace src with a string path */}
           <img 
             src={logoImage} 
             alt="Tropical Wedlock Logo" 
@@ -94,13 +96,15 @@ const Header = () => {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle Menu"
         >
+          {/* Top Line */}
           <motion.span 
             animate={{ 
               rotate: isMobileMenuOpen ? 45 : 0, 
-              y: isMobileMenuOpen ? 6 : 0,
+              y: isMobileMenuOpen ? 9 : 0,
             }} 
-            className="w-8 h-[2px] bg-white block transition-transform duration-300 shadow-md"
+            className="w-8 h-[2px] bg-white block transition-transform duration-300 shadow-md origin-center"
           />
+          {/* Middle Line */}
           <motion.span 
             animate={{ 
               opacity: isMobileMenuOpen ? 0 : 1,
@@ -108,12 +112,13 @@ const Header = () => {
             }} 
             className="h-[2px] bg-white block transition-all duration-300 group-hover:w-8 shadow-md"
           />
+          {/* Bottom Line */}
           <motion.span 
             animate={{ 
               rotate: isMobileMenuOpen ? -45 : 0, 
-              y: isMobileMenuOpen ? -6 : 0,
+              y: isMobileMenuOpen ? -9 : 0,
             }} 
-            className="w-8 h-[2px] bg-white block transition-transform duration-300 shadow-md"
+            className="w-8 h-[2px] bg-white block transition-transform duration-300 shadow-md origin-center"
           />
         </button>
       </motion.header>

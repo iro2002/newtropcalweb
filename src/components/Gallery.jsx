@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react"; // Optional icon for visual balance
-import logopng from "../images/logo.png"; 
+import { ArrowUpRight } from "lucide-react"; 
+import logopng from "../images/logo.png"; // Ensure this path is correct
 
 const HeroGreen = () => {
   // --- ANIMATION VARIANTS ---
@@ -24,7 +24,6 @@ const HeroGreen = () => {
     }
   };
 
-  // New variant for the boxes
   const boxVariant = {
     hidden: { opacity: 0, x: 50 },
     visible: { 
