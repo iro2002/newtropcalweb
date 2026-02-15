@@ -2,15 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Check, ArrowRight, Minus } from 'lucide-react';
 
-interface PricingTier {
-  title: string;
-  price: string;
-  description: string;
-  features: string[];
-  isPremium?: boolean;
-}
-
-const tiers: PricingTier[] = [
+const tiers = [
   {
     title: "The Highlight",
     price: "Rs. 25,000",
@@ -137,7 +129,6 @@ const Pricing = () => {
           whileInView={{ opacity: 1 }}
           className="mt-20 text-center"
         >
-     
         </motion.div>
       </div>
     </section>

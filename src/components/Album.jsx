@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { X, ArrowRight, MapPin, ArrowDown, ChevronDown, Camera, Calendar } from "lucide-react";
+import { X, ArrowRight, MapPin, ArrowDown, ChevronDown, Calendar } from "lucide-react";
 
 // --- IMAGES ---
-// Note: Ensure your folders inside, 'src/images' are named album1, album2, etc.
+// Ensure your folder structure matches: src/images/album1, src/images/album2, etc.
 import a1_cover from "../images/album1/1.jpg";
 import a1_1 from "../images/album1/1.jpg";
 import a1_2 from "../images/album1/2.jpg";
