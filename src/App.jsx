@@ -21,7 +21,7 @@ const App = () => {
       <AIAssistant />
       <Artist />
       <Album />
-      <Portfolio />
+
       <Price />
       <Faq />
       <Footer />

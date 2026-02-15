@@ -75,7 +75,7 @@ const Hero = () => {
           transition={{ duration: 2, delay: 1.8 }}
           className="text-xs md:text-sm font-light tracking-[0.3em] uppercase text-white"
         >
-          Fine Art Photography
+          Photography
         </motion.p>
 
       </div>

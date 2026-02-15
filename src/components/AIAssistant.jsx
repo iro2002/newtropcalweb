@@ -13,16 +13,16 @@ const LiquidMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-8 right-8 flex flex-col items-end gap-4 z-50">
+    <div className="fixed bottom-6 right-6 flex flex-col items-end gap-3 z-50">
       
       {/* Social Buttons */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="flex flex-col gap-3 mb-2 items-end"
+            exit={{ opacity: 0, y: 15 }}
+            className="flex flex-col gap-2 mb-1 items-end"
           >
             {socials.map((social, idx) => (
               <motion.a
@@ -30,20 +30,20 @@ const LiquidMenu = () => {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 group"
-                initial={{ opacity: 0, x: 20 }}
+                className="flex items-center gap-2 group"
+                initial={{ opacity: 0, x: 15 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
+                exit={{ opacity: 0, x: 15 }}
                 transition={{ delay: idx * 0.05, type: "spring", stiffness: 300 }}
               >
                 {/* Tooltip */}
-                <span className="bg-white text-neutral-800 text-xs px-3 py-1 rounded-md shadow-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none uppercase tracking-wide font-semibold">
+                <span className="bg-white text-neutral-800 text-xs px-2 py-0.5 rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none uppercase tracking-wide font-semibold">
                   {social.label}
                 </span>
 
                 {/* Icon Button */}
-                <div className={`flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-lg border border-neutral-200 transition-transform transform hover:scale-110`}>
-                  <social.icon className={`w-5 h-5 ${social.color}`} />
+                <div className={`flex items-center justify-center w-10 h-10 rounded-full bg-white shadow border border-neutral-200 transition-transform transform hover:scale-110`}>
+                  <social.icon className={`w-4 h-4 ${social.color}`} />
                 </div>
               </motion.a>
             ))}
@@ -54,7 +54,7 @@ const LiquidMenu = () => {
       {/* Main Toggle Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative flex items-center justify-center w-16 h-16 rounded-full bg-neutral-900 text-white shadow-2xl border border-neutral-800 overflow-hidden"
+        className="relative flex items-center justify-center w-12 h-12 rounded-full bg-neutral-900 text-white shadow-xl border border-neutral-800 overflow-hidden"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -67,7 +67,7 @@ const LiquidMenu = () => {
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <X size={28} strokeWidth={1.5} />
+              <X size={20} strokeWidth={1.5} />
             </motion.div>
           ) : (
             <motion.div
@@ -77,7 +77,7 @@ const LiquidMenu = () => {
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <Plus size={28} strokeWidth={1.5} />
+              <Plus size={20} strokeWidth={1.5} />
             </motion.div>
           )}
         </AnimatePresence>

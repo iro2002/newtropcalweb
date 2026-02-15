@@ -81,19 +81,7 @@ const FAQ = () => {
           ))}
         </div>
 
-        {/* --- FOOTER NOTE (Social Media Policy) --- */}
-        <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 p-8 bg-slate-50 border border-slate-100 rounded-sm text-center"
-        >
-            <h4 className="font-serif text-lg text-slate-900 mb-2">A Note on Social Media</h4>
-            <p className="text-sm text-slate-500 leading-relaxed max-w-2xl mx-auto">
-                We curate a limited number of weddings for our portfolio based on our artistic direction. 
-                While we cherish every couple we work with, we kindly ask that you respect our editorial choice regarding which weddings are published on the Tropical Wedlock platforms.
-            </p>
-        </motion.div>
+       
 
         {/* --- CONTACT CTA --- */}
         <div className="mt-12 text-center">
