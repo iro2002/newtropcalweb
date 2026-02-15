@@ -1,138 +1,272 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Check, ArrowRight, Minus } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Check, Clock, Plus } from "lucide-react";
 
-const tiers = [
-  {
-    title: "The Highlight",
-    price: "Rs. 25,000",
-    description: "Ideal for intimate ceremonies or Homecomings focusing on the core narrative.",
-    features: [
-      "08 Hours of Coverage",
-      "Lead Cinematographer",
-      "04-Minute Cinematic Highlight",
-      "Edited Full Ceremony Film",
-      "Online Gallery Access"
-    ]
-  },
-  {
-    title: "The Heirloom",
-    price: "Rs. 45,000",
-    description: "Our signature collection covering both the Wedding and Homecoming events.",
-    isPremium: true,
-    features: [
-      "Comprehensive Two-Day Coverage",
-      "Three Multi-angle Cinematographers",
-      "08-Minute Feature Film",
-      "4K Drone Aerials (Subject to SLCASL)",
-      "Same-Day Edit (SDE) Teaser",
-      "Pre-Shoot Cinematic Session"
-    ]
-  },
-  {
-    title: "Grand Editorial",
-    price: "Rs. 75,000",
-    description: "An elite production for grand multi-day celebrations and destination weddings.",
-    features: [
-      "Unlimited Multi-day Coverage",
-      "Director & Full Creative Team",
-      "15-Minute Documentary Film",
-      "Pre-Wedding Storyboarded Film",
-      "Raw Footage on High-Speed Drive",
-      "Premium Handcrafted Keepsake Box"
-    ]
-  }
-];
+const PriceProfessional = () => {
+  // --- DATA: Main Wedding Packages ---
+  const weddingPackages = [
+    {
+      title: "Digital Collection",
+      price: "Rs. 75,000",
+      description: "A perfect starting point covering the essentials of your day.",
+      features: [
+        "2 Photographers",
+        "Bride & Groom Prep",
+        "Ceremony & Reception",
+        "Couple & Family Session",
+        "Up to 10 hours coverage",
+        "800-1000 High-Res Images",
+        "Digital Download Delivery",
+      ],
+      highlight: false,
+    },
+    {
+      title: "Bronze Collection",
+      price: "Rs. 119,000",
+      description: "Capturing the essence of your love story with fine art details.",
+      features: [
+        "Everything in Digital Collection",
+        "Fine Art Album (12x24, 50 Pages)",
+        "1 Framed Enlargement (16x24)",
+        "Online Proofing Gallery",
+        "Home Selection Process",
+        "Retouched Downloads",
+      ],
+      highlight: false,
+    },
+    {
+      title: "Platinum Collection",
+      price: "Rs. 149,000",
+      description: "The premier package with pre-wedding documentation.",
+      features: [
+        "PRE-WEDDING SHOOT (4 Hours)",
+        "75 Retouched Pre-shoot images",
+        "Wedding Day Slideshow",
+        "2 Photographers (Wedding Day)",
+        "Up to 10 Hours Coverage",
+        "Fine Art Album (12x24, 50 Pages)",
+        "1 Framed Enlargement (16x24)",
+        "100 Thank You Cards",
+      ],
+      highlight: false,
+    },
+    {
+      title: "Tropical Collection",
+      price: "Rs. 179,000",
+      description: "The elite experience. Complete, romantic, and non-intrusive.",
+      features: [
+        "PRE-WEDDING SHOOT (Casual)",
+        "75 Retouched Pre-shoot images",
+        "Wedding Day Slideshow",
+        "2 Photographers (Wedding Day)",
+        "Up to 10 Hours Coverage",
+        "Fine Art Album (12x24, 60 Pages)",
+        "Family Album (10x20, 30 Pages)",
+        "2 Framed Enlargements (16x24)",
+        "1 Framed Enlargement (12x18)",
+        "100 Thank You Cards",
+      ],
+      highlight: true, 
+    },
+  ];
 
-const Pricing = () => {
+  // --- DATA: Additional Services ---
+  const otherServices = [
+    {
+      title: "Homecoming Collection",
+      price: "Rs. 95,000",
+      features: [
+        "2 Photographers", 
+        "8 Hours Coverage", 
+        "Couple & Family Session", 
+        "1 Framed Enlargement (16x24)",
+        "600-800 Final Images"
+      ],
+    },
+    {
+      title: "Engagement Collection",
+      price: "Rs. 70,000",
+      features: [
+        "2 Photographers", 
+        "5 Hours Coverage", 
+        "Couple & Family Session", 
+        "1 Framed Enlargement (12x18)",
+        "200 Post-Processed Images"
+      ],
+    },
+    {
+      title: "Casual Session",
+      price: "Rs. 50,000",
+      features: [
+        "3 Hours Exclusive Coverage", 
+        "75 Post-Processed Images", 
+        "Online Proofing Gallery", 
+        "Slideshow (On Request)",
+        "Digital Delivery"
+      ],
+    },
+  ];
+
   return (
-    <section className="bg-[#fcfcfc] py-8 px-6 lg:px-20 relative overflow-hidden">
-      {/* Background Decor */}
-      <div className="absolute top-0 right-0 p-20 opacity-[0.03] pointer-events-none select-none">
-        <span className="text-[15rem] font-serif italic">Invest</span>
-      </div>
+    <section id="book" className="relative py-24 bg-white text-slate-800">
+      
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        
+        {/* --- HEADER --- */}
+        <div className="text-center mb-20">
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-xs font-medium tracking-[0.25em] text-emerald-800 uppercase"
+          >
+            Investment
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            viewport={{ once: true }}
+            className="mt-3 font-serif text-4xl md:text-6xl text-slate-900 font-normal"
+          >
+            Wedding Collections
+          </motion.h2>
+          <div className="w-16 h-1 bg-emerald-800 mx-auto mt-6" />
+        </div>
 
-      <div className="max-w-[1400px] mx-auto relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 text-center md:text-left"
-        >
-          <div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 font-serif text-neutral-900 tracking-tight">
-              Preserve Your<br/><span className="italic font-light">island story</span>
-            </h2>
-            <p className="text-neutral-500 max-w-sm font-light leading-relaxed text-sm">
-              A curated approach to Sri Lankan weddings—capturing the vibrant colors of the Poruwa and the timeless elegance of the ballroom.
-            </p>
-          </div>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-neutral-200 border border-neutral-200">
-          {tiers.map((tier, idx) => (
+        {/* --- MAIN WEDDING GRID --- */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8 mb-24">
+          {weddingPackages.map((pkg, index) => (
             <motion.div
-              key={tier.title}
-              initial={{ opacity: 0, y: 30 }}
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className={`relative p-12 lg:p-16 bg-[#fcfcfc] flex flex-col h-full group ${
-                tier.isPremium ? 'z-10' : ''
-              }`}
+              className={`
+                relative flex flex-col p-8 transition-all duration-300
+                ${pkg.highlight 
+                  ? "bg-white border-2 border-emerald-800 shadow-2xl scale-[1.02] z-10" 
+                  : "bg-white border-2 border-slate-200 hover:border-emerald-600 hover:shadow-xl"
+                }
+              `}
             >
-              {tier.isPremium && (
-                <div className="absolute top-0 left-0 w-full h-1 bg-neutral-900" />
-              )}
-              
-              <div className="mb-12">
-                <h3 className="text-sm uppercase tracking-[0.3em] font-bold text-neutral-400 mb-8">
-                  {tier.title}
-                </h3>
-                <div className="flex flex-col mb-6">
-                  <span className="text-xs uppercase tracking-widest text-neutral-400 italic mb-1">Investment starts at</span>
-                  <span className="text-3xl md:text-4xl font-serif text-neutral-900">{tier.price}</span>
+              {pkg.highlight && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-800 text-white text-[11px] font-medium px-4 py-1.5 uppercase tracking-widest shadow-md">
+                  Most Popular
                 </div>
-                <p className="text-neutral-500 font-serif italic leading-relaxed text-sm">
-                  {tier.description}
-                </p>
-              </div>
+              )}
 
-              <div className="flex-grow">
-                <ul className="space-y-5">
-                  {tier.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-4 text-[11px] uppercase tracking-widest text-neutral-600 leading-tight">
-                      <Minus size={14} className="text-neutral-300 mt-0.5 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <h3 className="font-serif text-2xl text-slate-900 mb-2 font-normal">{pkg.title}</h3>
+              <div className="text-xl font-medium text-emerald-800 mb-4">{pkg.price}</div>
+              <p className="text-sm text-slate-500 mb-8 leading-relaxed border-b border-slate-100 pb-6 min-h-[100px]">
+                {pkg.description}
+              </p>
 
-              <div className="mt-16">
-                <button className={`w-full py-6 text-[10px] uppercase tracking-[0.3em] font-bold transition-all duration-500 flex items-center justify-center gap-3 border ${
-                  tier.isPremium 
-                  ? 'bg-neutral-900 text-white border-neutral-900 hover:bg-neutral-800' 
-                  : 'bg-transparent text-neutral-900 border-neutral-200 hover:border-neutral-900'
-                }`}>
-                  Check Availability
-                  <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                </button>
-              </div>
+              <ul className="flex-1 space-y-4 mb-8">
+                {pkg.features.map((feature, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm text-slate-600">
+                    <Check size={16} className="mt-0.5 text-emerald-700 shrink-0" />
+                    <span className="leading-snug">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button className={`
+                w-full py-4 text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300 border-2
+                ${pkg.highlight 
+                  ? "bg-emerald-800 text-white border-emerald-800 hover:bg-emerald-900 hover:border-emerald-900" 
+                  : "bg-white text-slate-700 border-slate-200 hover:bg-emerald-700 hover:text-white hover:border-emerald-700"
+                }
+              `}>
+                Book Package
+              </button>
             </motion.div>
           ))}
         </div>
 
-        {/* Footer Note */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="mt-20 text-center"
-        >
-        </motion.div>
+        {/* --- DIVIDER --- */}
+        <div className="relative flex items-center justify-center mb-16">
+          <div className="w-full h-[1px] bg-slate-200 absolute z-0" />
+          <div className="bg-white px-8 z-10">
+             <h3 className="font-serif text-3xl text-slate-900 font-normal">Additional Coverage</h3>
+          </div>
+        </div>
+
+        {/* --- ADDITIONAL COVERAGE --- */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
+            {otherServices.map((svc, index) => (
+                <motion.div 
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex flex-col bg-white border-2 border-slate-200 p-8 hover:border-emerald-600 hover:shadow-xl transition-all duration-300 group"
+                >
+                    <div className="text-center mb-6">
+                        <h4 className="font-serif text-2xl text-slate-900 font-normal mb-2 group-hover:text-emerald-800 transition-colors">{svc.title}</h4>
+                        <span className="text-lg font-medium text-slate-500">{svc.price}</span>
+                        <div className="w-12 h-[1px] bg-emerald-600 mx-auto mt-4 opacity-50" />
+                    </div>
+
+                    <ul className="flex-1 space-y-3 mb-8">
+                        {svc.features.map((feature, i) => (
+                            <li key={i} className="flex items-start gap-3 text-sm text-slate-600 justify-center text-center">
+                                <span className="leading-relaxed">{feature}</span>
+                            </li>
+                        ))}
+                    </ul>
+
+                    <div className="text-center mt-auto">
+                        <button className="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-emerald-800 inline-flex items-center gap-2 transition-colors border-b border-transparent group-hover:border-emerald-800 pb-0.5">
+                            Inquire Now
+                        </button>
+                    </div>
+                </motion.div>
+            ))}
+        </div>
+
+        {/* --- BOTTOM INFO BOX --- */}
+        <div className="max-w-5xl mx-auto border-t border-slate-200 pt-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            {/* Extended Hours */}
+            <div className="flex items-center gap-6 p-8 bg-white border-2 border-slate-100 hover:border-emerald-600 transition-colors duration-300">
+                <div className="p-4 bg-emerald-50 text-emerald-800 rounded-full">
+                <Clock size={24} strokeWidth={1.5} />
+                </div>
+                <div>
+                <h4 className="font-medium text-slate-900 uppercase tracking-widest text-xs mb-2">
+                    Extended Hours
+                </h4>
+                <p className="text-slate-500 text-sm">
+                    Available at <span className="text-emerald-800 font-medium">Rs. 5,000/hr</span>.
+                </p>
+                </div>
+            </div>
+
+            {/* Custom Requests */}
+            <div className="flex items-center gap-6 p-8 bg-white border-2 border-slate-100 hover:border-emerald-600 transition-colors duration-300">
+                <div className="p-4 bg-emerald-50 text-emerald-800 rounded-full">
+                <Plus size={24} strokeWidth={1.5} />
+                </div>
+                <div>
+                <h4 className="font-medium text-slate-900 uppercase tracking-widest text-xs mb-2">
+                    Custom Requests
+                </h4>
+                <p className="text-slate-500 text-sm">
+                    Contact us for a <span className="text-emerald-800 font-medium underline decoration-1 underline-offset-2">custom quote</span>.
+                </p>
+                </div>
+            </div>
+
+            </div>
+        </div>
+
       </div>
     </section>
   );
 };
 
-export default Pricing;
+export default PriceProfessional;

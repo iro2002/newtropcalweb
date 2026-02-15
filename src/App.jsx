@@ -9,6 +9,7 @@ import Portfolio from "./components/Portfolio";
 import Album from "./components/Album";
 import Price from "./components/Price";
 import Footer from "./components/Footer";
+import Faq from "./components/Faq";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
       <Album />
       <Portfolio />
       <Price />
+      <Faq />
       <Footer />
     </div>
   );
