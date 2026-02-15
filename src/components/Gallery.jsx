@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react"; 
-import logopng from "../images/logo.png"; // Ensure this path is correct
+import logopng from "../images/logo2.png"; // Ensure this path is correct
 
 const HeroGreen = () => {
   // --- ANIMATION VARIANTS ---

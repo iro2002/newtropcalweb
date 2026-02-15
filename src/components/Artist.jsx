@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 // ✅ Import your logo
-import logoBg from "../images/logopng.png";
+import logoBg from "../images/logo2.png";
 
 // --- TESTIMONIALS DATA ---
 const testimonials = [
