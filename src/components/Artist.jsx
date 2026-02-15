@@ -113,7 +113,7 @@ const Testimonials = () => {
         
         {/* Header - MATCHING GALLERY STYLE */}
         <div className="mb-16 text-center">
-          <h2 className="text-5xl md:text-7xl font-serif text-neutral-900 leading-[0.9]">
+          <h2 className="text-6xl md:text-7xl font-serif text-neutral-900 leading-[0.9]">
             Kind 
             <span className="italic font-light text-emerald-700">Words</span>
           </h2>

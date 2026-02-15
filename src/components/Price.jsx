@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, Clock, Plus, ChevronLeft, ChevronRight } from "lucide-react";
+import { Check, Clock, Plus, ChevronLeft, ChevronRight, Download } from "lucide-react";
 
 const PriceProfessional = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -166,7 +166,7 @@ const PriceProfessional = () => {
     <section id="book" className="relative py-24 bg-white text-slate-800 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
-        {/* --- HEADER (UPDATED STYLE) --- */}
+        {/* --- HEADER --- */}
         <motion.div 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -174,8 +174,8 @@ const PriceProfessional = () => {
             transition={{ duration: 0.7 }}
             className="mb-16 lg:mb-24 text-center"
         >
-          <h2 className="text-5xl md:text-6xl font-serif text-neutral-900 leading-[0.9]">
-            Pricing <br />
+          <h2 className="text-6xl md:text-7xl font-serif text-neutral-900 leading-[0.9]">
+            Pricing
             <span className="italic font-light text-emerald-700">Guide</span>
           </h2>
           
@@ -184,7 +184,7 @@ const PriceProfessional = () => {
           </p>
         </motion.div>
 
-        {/* --- MOBILE VIEW: SWAPPABLE CARD (Maintains Desktop Look) --- */}
+        {/* --- MOBILE VIEW --- */}
         <div className="block lg:hidden mb-24">
             <div className="relative min-h-[600px]"> 
                 <AnimatePresence mode="wait" custom={direction}>
@@ -212,8 +212,6 @@ const PriceProfessional = () => {
                 >
                     <ChevronLeft size={24} />
                 </button>
-
-                {/* Dots Indicator */}
                 <div className="flex gap-2">
                     {weddingPackages.map((_, i) => (
                         <div 
@@ -222,7 +220,6 @@ const PriceProfessional = () => {
                         />
                     ))}
                 </div>
-
                 <button 
                     onClick={handleNext}
                     className="p-4 rounded-full border border-slate-200 text-emerald-800 bg-white hover:bg-emerald-50 active:scale-95 transition-all shadow-sm"
@@ -233,7 +230,7 @@ const PriceProfessional = () => {
             </div>
         </div>
 
-        {/* --- DESKTOP VIEW: GRID (Hidden on Mobile) --- */}
+        {/* --- DESKTOP VIEW --- */}
         <div className="hidden lg:grid grid-cols-4 gap-6 xl:gap-8 mb-24 items-start">
           {weddingPackages.map((pkg, index) => (
             <motion.div
@@ -273,7 +270,6 @@ const PriceProfessional = () => {
                         <span className="text-lg font-medium text-slate-500">{svc.price}</span>
                         <div className="w-12 h-[1px] bg-emerald-600 mx-auto mt-4 opacity-50" />
                     </div>
-
                     <ul className="flex-1 space-y-3 mb-8">
                         {svc.features.map((feature, i) => (
                             <li key={i} className="flex items-start gap-3 text-sm text-slate-600 justify-center text-center">
@@ -281,7 +277,6 @@ const PriceProfessional = () => {
                             </li>
                         ))}
                     </ul>
-
                     <div className="text-center mt-auto">
                         <button className="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-emerald-800 inline-flex items-center gap-2 transition-colors border-b border-transparent group-hover:border-emerald-800 pb-0.5">
                             Inquire Now
@@ -291,10 +286,36 @@ const PriceProfessional = () => {
             ))}
         </div>
 
+        {/* ================================================== */}
+        {/* --- NEW SECTION: DOWNLOAD PDF BUTTON (GREEN) --- */}
+        {/* ================================================== */}
+        <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center justify-center mb-16"
+        >
+            <p className="text-slate-400 text-xs italic mb-4">Prefer a printed copy?</p>
+            
+            <a 
+                href="/pricing.pdf" 
+                download="Pricing_Guide.pdf"
+                className="group relative inline-flex items-center gap-4 px-10 py-5 bg-emerald-800 text-white overflow-hidden transition-all shadow-lg hover:shadow-emerald-900/30 rounded-sm"
+            >
+                {/* Background Hover Effect: Darker Green Slide Up */}
+                <div className="absolute inset-0 bg-emerald-950 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+                
+                {/* Content */}
+                <span className="relative z-10 flex items-center gap-3">
+                    <Download className="w-5 h-5 group-hover:animate-bounce" />
+                    <span className="text-xs font-bold uppercase tracking-[0.2em]">Download Full Guide (PDF)</span>
+                </span>
+            </a>
+        </motion.div>
+
         {/* --- BOTTOM INFO BOX --- */}
         <div className="max-w-5xl mx-auto border-t border-slate-200 pt-16">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Extended Hours */}
                 <div className="flex items-center gap-6 p-8 bg-white border-2 border-slate-100 hover:border-emerald-600 transition-colors duration-300">
                     <div className="p-4 bg-emerald-50 text-emerald-800 rounded-full">
                     <Clock size={24} strokeWidth={1.5} />
@@ -308,8 +329,6 @@ const PriceProfessional = () => {
                     </p>
                     </div>
                 </div>
-
-                {/* Custom Requests */}
                 <div className="flex items-center gap-6 p-8 bg-white border-2 border-slate-100 hover:border-emerald-600 transition-colors duration-300">
                     <div className="p-4 bg-emerald-50 text-emerald-800 rounded-full">
                     <Plus size={24} strokeWidth={1.5} />

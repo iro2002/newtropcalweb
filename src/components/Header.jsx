@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // TODO: Ensure this path matches your project structure
-// If you don't have a logo yet, comment this import out and use text instead
 import logoImage from '../images/app-logo.png'; 
 
 const Header = () => {
@@ -11,23 +10,16 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
 
-  // Detect scroll direction and depth
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // 1. Set background solid/scrolled state
       setIsScrolled(currentScrollY > 50);
 
-      // 2. Hide on scroll down, show on scroll up logic
       if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-        // Scrolling Down - Hide
-        setIsVisible(false);
+        setIsVisible(false); 
       } else {
-        // Scrolling Up - Show
         setIsVisible(true);
       }
-
       lastScrollY.current = currentScrollY;
     };
 
@@ -42,96 +34,97 @@ const Header = () => {
     { name: "Contact", href: "#contact" },
   ];
 
+  // --- DYNAMIC GLASS STYLES ---
+  // When scrolled: Dark Text on White Glass
+  // At Top: White Text on Transparent
+  const textColorClass = (isScrolled || isMobileMenuOpen) ? "text-emerald-950" : "text-white";
+  const burgerColorClass = (isScrolled || isMobileMenuOpen) ? "bg-emerald-950" : "bg-white";
+
   return (
     <>
       <motion.header
-        // Combined visibility and scroll logic
         initial={{ y: 0 }}
-        animate={{ 
-          y: isVisible || isMobileMenuOpen ? 0 : -100,
-        }}
+        animate={{ y: isVisible || isMobileMenuOpen ? 0 : -100 }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-700 ease-in-out px-6 md:px-12 flex justify-between items-center ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-6 md:px-12 flex justify-between items-center ${
           (isScrolled || isMobileMenuOpen) 
-            ? 'bg-[#022c22]/90 backdrop-blur-lg border-b border-white/5 py-3 shadow-sm' 
+            ? 'bg-white/20 backdrop-blur-xl border-b border-white/20 shadow-lg py-3' // THE GLASS EFFECT
             : 'bg-transparent py-6'
         }`}
       >
-        {/* --- LOGO IMAGE --- */}
+        {/* --- LOGO --- */}
         <a href="#" className="relative z-50 block">
-          {/* Ensure logoImage is imported or replace src with a string path */}
           <img 
             src={logoImage} 
-            alt="Tropical Wedlock Logo" 
-            className="h-10 md:h-12 w-auto object-contain drop-shadow-lg"
+            alt="Logo" 
+            className={`h-8 md:h-10 w-auto object-contain transition-all duration-300 ${
+                // If your logo is white, invert it when scrolled to make it visible on glass
+                isScrolled ? 'brightness-0 opacity-80' : 'brightness-100 drop-shadow-md'
+            }`}
           />
         </a>
 
         {/* --- DESKTOP NAV --- */}
-        <nav className="hidden md:flex gap-10 items-center">
+        <nav className="hidden md:flex gap-8 items-center">
           {links.map((link, index) => (
             <a 
               key={index} 
               href={link.href} 
               className="relative group py-2"
             >
-              <span className="text-xs font-medium uppercase tracking-[0.2em] text-white group-hover:text-emerald-300 transition-all duration-300 drop-shadow-md">
+              <span className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors duration-300 ${textColorClass}`}>
                 {link.name}
               </span>
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-emerald-400 transition-all duration-300 group-hover:w-full" />
+              {/* Underline Effect */}
+              <span className={`absolute bottom-0 left-0 w-0 h-[1.5px] transition-all duration-300 group-hover:w-full ${
+                  isScrolled ? "bg-emerald-800" : "bg-white"
+              }`} />
             </a>
           ))}
           
           <a 
             href="#book" 
-            className="px-6 py-2 border border-white/30 text-xs uppercase tracking-widest text-white hover:bg-white hover:text-[#022c22] transition-all duration-300 rounded-sm shadow-sm backdrop-blur-sm"
+            className={`ml-4 px-6 py-2.5 border text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 rounded-sm ${
+                (isScrolled || isMobileMenuOpen)
+                ? "border-emerald-900/50 text-emerald-950 hover:bg-emerald-900 hover:text-white"
+                : "border-white/50 text-white hover:bg-white hover:text-emerald-950 backdrop-blur-sm"
+            }`}
           >
             Book Now
           </a>
         </nav>
 
-        {/* --- MOBILE MENU BUTTON --- */}
+        {/* --- MOBILE BURGER ICON --- */}
         <button 
           className="md:hidden relative z-50 w-10 h-10 flex flex-col justify-center items-end gap-1.5 group"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle Menu"
         >
-          {/* Top Line */}
           <motion.span 
-            animate={{ 
-              rotate: isMobileMenuOpen ? 45 : 0, 
-              y: isMobileMenuOpen ? 9 : 0,
-            }} 
-            className="w-8 h-[2px] bg-white block transition-transform duration-300 shadow-md origin-center"
+            animate={{ rotate: isMobileMenuOpen ? 45 : 0, y: isMobileMenuOpen ? 9 : 0 }} 
+            className={`w-6 h-[2px] block transition-all duration-300 origin-center ${burgerColorClass}`}
           />
-          {/* Middle Line */}
           <motion.span 
-            animate={{ 
-              opacity: isMobileMenuOpen ? 0 : 1,
-              width: isMobileMenuOpen ? 0 : "1.25rem", 
-            }} 
-            className="h-[2px] bg-white block transition-all duration-300 group-hover:w-8 shadow-md"
+            animate={{ opacity: isMobileMenuOpen ? 0 : 1, width: isMobileMenuOpen ? 0 : "1rem" }} 
+            className={`h-[2px] block transition-all duration-300 group-hover:w-6 ${burgerColorClass}`}
           />
-          {/* Bottom Line */}
           <motion.span 
-            animate={{ 
-              rotate: isMobileMenuOpen ? -45 : 0, 
-              y: isMobileMenuOpen ? -9 : 0,
-            }} 
-            className="w-8 h-[2px] bg-white block transition-transform duration-300 shadow-md origin-center"
+            animate={{ rotate: isMobileMenuOpen ? -45 : 0, y: isMobileMenuOpen ? -9 : 0 }} 
+            className={`w-6 h-[2px] block transition-all duration-300 origin-center ${burgerColorClass}`}
           />
         </button>
       </motion.header>
 
-      {/* --- MOBILE FULLSCREEN MENU --- */}
+      {/* --- MOBILE MENU (Glass Overlay) --- */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#022c22]/95 backdrop-blur-xl flex flex-col items-center justify-center md:hidden"
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(16px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.4 }}
+            // Full screen frosted glass for mobile menu
+            className="fixed inset-0 z-40 bg-white/60 flex flex-col items-center justify-center md:hidden"
           >
             <nav className="flex flex-col gap-8 text-center">
               {links.map((link, i) => (
@@ -142,7 +135,7 @@ const Header = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.1 * i, duration: 0.5 }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-2xl font-serif text-white hover:text-emerald-300 transition-colors duration-300 tracking-wide drop-shadow-md"
+                  className="text-3xl font-serif text-emerald-950 hover:text-emerald-700 transition-colors duration-300 tracking-tight"
                 >
                   {link.name}
                 </motion.a>
@@ -152,12 +145,12 @@ const Header = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="mt-8 flex flex-col items-center gap-6"
+                className="mt-8"
               >
                  <a 
                   href="#book"
                   onClick={() => setIsMobileMenuOpen(false)} 
-                  className="px-8 py-3 border border-white/20 text-sm uppercase tracking-widest text-white hover:bg-white hover:text-[#022c22] transition-colors"
+                  className="px-10 py-4 border border-emerald-900/30 text-xs font-bold uppercase tracking-[0.2em] text-emerald-950 hover:bg-emerald-950 hover:text-white transition-colors"
                 >
                   Book Your Date
                 </a>
