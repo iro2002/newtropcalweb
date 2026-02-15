@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // TODO: Ensure this path matches your project structure
 // If you don't have a logo yet, comment this import out and use text instead
-import logoImage from '../images/logo.png'; 
+import logoImage from '../images/app-logo.png'; 
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
