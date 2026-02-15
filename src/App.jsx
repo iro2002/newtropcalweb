@@ -9,7 +9,9 @@ import Portfolio from "./components/Portfolio";
 import Album from "./components/Album";
 import Price from "./components/Price";
 import Footer from "./components/Footer";
+import VideoShowcase from "./components/Video";
 import Faq from "./components/Faq";
+import Contact from "./components/Contact";
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
       <Album />
 
       <Price />
+      <VideoShowcase />
+      <Contact />
       <Faq />
       <Footer />
     </div>

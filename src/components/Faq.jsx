@@ -33,32 +33,42 @@ const FAQ = () => {
   ];
 
   return (
-    <section id="faq" className="py-24 bg-white text-slate-800">
+    <section id="faq" className="py-32 bg-white text-slate-800">
       <div className="max-w-4xl mx-auto px-6">
         
-        {/* --- HEADER --- */}
-        <div className="text-center mb-16">
-          <span className="text-xs font-bold tracking-[0.25em] text-emerald-800 uppercase block mb-3">
-            Common Questions
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl text-slate-900">
-            Good to Know
+        {/* --- ENHANCED HEADER --- */}
+        <div className="text-center mb-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center justify-center gap-3 mb-4"
+          >
+            <span className="h-[1px] w-8 bg-emerald-800/30"></span>
+            <span className="text-[10px] font-bold tracking-[0.4em] text-emerald-800 uppercase">
+              Investment & Logistics
+            </span>
+            <span className="h-[1px] w-8 bg-emerald-800/30"></span>
+          </motion.div>
+          
+          <h2 className="font-serif text-5xl md:text-6xl text-slate-900 leading-tight">
+            Curated <span className="italic font-light text-emerald-800">Details</span>
           </h2>
         </div>
 
         {/* --- ACCORDION --- */}
-        <div className="border-t border-slate-200">
+        <div className="border-t border-slate-100">
           {faqs.map((faq, index) => (
-            <div key={index} className="border-b border-slate-200">
+            <div key={index} className="border-b border-slate-100">
               <button
                 onClick={() => toggleAccordion(index)}
-                className="w-full py-8 flex items-center justify-between text-left group focus:outline-none"
+                className="w-full py-10 flex items-center justify-between text-left group focus:outline-none"
               >
-                <span className={`font-serif text-xl md:text-2xl transition-colors duration-300 ${activeIndex === index ? "text-emerald-800" : "text-slate-900 group-hover:text-emerald-700"}`}>
+                <span className={`font-serif text-xl md:text-2xl transition-all duration-500 ${activeIndex === index ? "text-emerald-800 translate-x-2" : "text-slate-900 group-hover:text-emerald-700"}`}>
                   {faq.question}
                 </span>
-                <span className={`ml-6 flex-shrink-0 transition-transform duration-300 ${activeIndex === index ? "rotate-180 text-emerald-800" : "text-slate-400 group-hover:text-emerald-700"}`}>
-                  {activeIndex === index ? <Minus size={24} strokeWidth={1} /> : <Plus size={24} strokeWidth={1} />}
+                <span className={`ml-6 flex-shrink-0 transition-transform duration-500 ${activeIndex === index ? "rotate-180 text-emerald-800" : "text-slate-300 group-hover:text-emerald-700"}`}>
+                  {activeIndex === index ? <Minus size={20} strokeWidth={1.5} /> : <Plus size={20} strokeWidth={1.5} />}
                 </span>
               </button>
 
@@ -68,10 +78,10 @@ const FAQ = () => {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
                     className="overflow-hidden"
                   >
-                    <p className="pb-8 text-slate-500 leading-relaxed text-base md:text-lg max-w-3xl">
+                    <p className="pb-10 text-slate-500 leading-relaxed text-base md:text-lg max-w-2xl border-l-2 border-emerald-50 pl-6 ml-1">
                       {faq.answer}
                     </p>
                   </motion.div>
@@ -81,15 +91,19 @@ const FAQ = () => {
           ))}
         </div>
 
-       
-
         {/* --- CONTACT CTA --- */}
-        <div className="mt-12 text-center">
-            <p className="text-slate-400 text-sm mb-4">Still have questions?</p>
-            <a href="#contact" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-emerald-800 hover:text-emerald-600 transition-colors">
-                Contact Us <ArrowRight size={16} />
+        <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mt-20 text-center"
+        >
+            <p className="text-slate-400 text-xs italic mb-6">Still have questions regarding your legacy?</p>
+            <a href="#contact" className="group inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-900 transition-all">
+                <span className="border-b border-emerald-900/20 pb-1 group-hover:border-emerald-900 transition-all">Start a Conversation</span>
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </a>
-        </div>
+        </motion.div>
 
       </div>
     </section>
