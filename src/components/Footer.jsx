@@ -8,6 +8,22 @@ const FooterLuxury = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Helper for smooth scrolling to sections
+  const handleScroll = (e, id) => {
+    e.preventDefault();
+    if (id === '#home') {
+        scrollToTop();
+        return;
+    }
+    const element = document.querySelector(id);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  };
+
   const linkVariant = {
     hidden: { y: 20, opacity: 0 },
     visible: { 
@@ -28,7 +44,7 @@ const FooterLuxury = () => {
   return (
     <footer className="relative bg-[#022c22] text-emerald-50 pt-24 pb-10 px-6 overflow-hidden">
       
-      {/* Background Texture (Optional noise for consistency) */}
+      {/* Background Texture */}
       <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col justify-between min-h-[60vh]">
@@ -51,9 +67,10 @@ const FooterLuxury = () => {
             </p>
             
             <motion.button 
+              onClick={(e) => handleScroll(e, '#contact')}
               whileHover={{ scale: 1.05, backgroundColor: "#ecfdf5", color: "#064e3b" }}
               whileTap={{ scale: 0.95 }}
-              className="px-10 py-5 bg-transparent border border-emerald-500/30 rounded-full text-xs uppercase tracking-[0.2em] transition-colors duration-300"
+              className="px-10 py-5 bg-transparent border border-emerald-500/30 rounded-full text-xs uppercase tracking-[0.2em] transition-colors duration-300 cursor-pointer"
             >
               Book Consultation
             </motion.button>
@@ -74,19 +91,28 @@ const FooterLuxury = () => {
             <div className="flex items-start gap-3 text-emerald-200/60 text-sm">
               <MapPin size={16} className="mt-1 flex-shrink-0" />
               <p>
-                Colombo 07, <br />
-                Western Province, <br />
+                Colombo, <br />
                 Sri Lanka.
               </p>
             </div>
           </motion.div>
 
-          {/* Column 2: Sitemap */}
+          {/* Column 2: Sitemap (Updated with IDs) */}
           <motion.div variants={linkVariant} className="space-y-4">
             <h4 className="text-[10px] uppercase tracking-widest text-emerald-500 font-bold mb-4">Menu</h4>
-            {["Home", "Gallery", "Films", "Packages", "Journal"].map((item) => (
-              <a key={item} href="#" className="block text-emerald-100/70 hover:text-emerald-300 hover:translate-x-2 transition-all duration-300 text-sm">
-                {item}
+            {[
+                { name: "Home", href: "#home" },
+                { name: "Gallery", href: "#gallery" },
+                { name: "Reviews", href: "#reviews" },
+                { name: "Pricing", href: "#pricing" },
+            ].map((item) => (
+              <a 
+                key={item.name} 
+                href={item.href}
+                onClick={(e) => handleScroll(e, item.href)}
+                className="block text-emerald-100/70 hover:text-emerald-300 hover:translate-x-2 transition-all duration-300 text-sm cursor-pointer"
+              >
+                {item.name}
               </a>
             ))}
           </motion.div>
@@ -106,14 +132,14 @@ const FooterLuxury = () => {
             </div>
           </motion.div>
 
-          {/* Column 4: Contact */}
+          {/* Column 4: Contact (Updated) */}
           <motion.div variants={linkVariant} className="space-y-4">
             <h4 className="text-[10px] uppercase tracking-widest text-emerald-500 font-bold mb-4">Contact</h4>
-            <a href="mailto:hello@tropicalwedlock.com" className="flex items-center gap-3 text-emerald-100/70 hover:text-emerald-300 transition-colors text-sm">
-              <Mail size={16} /> hello@tropicalwedlock.com
+            <a href="mailto:tropicalwedlock.info@gmail.com" className="flex items-center gap-3 text-emerald-100/70 hover:text-emerald-300 transition-colors text-sm break-all">
+              <Mail size={16} className="shrink-0" /> tropicalwedlock.info@gmail.com
             </a>
-            <a href="tel:+94770000000" className="flex items-center gap-3 text-emerald-100/70 hover:text-emerald-300 transition-colors text-sm">
-              <Phone size={16} /> +94 77 123 4567
+            <a href="tel:+94722006206" className="flex items-center gap-3 text-emerald-100/70 hover:text-emerald-300 transition-colors text-sm">
+              <Phone size={16} className="shrink-0" /> +94 72 200 6206
             </a>
           </motion.div>
         </motion.div>
@@ -135,7 +161,7 @@ const FooterLuxury = () => {
 
       </div>
       
-      {/* Decorative large faint text at the very bottom (optional) */}
+      {/* Decorative large faint text */}
       <div className="absolute -bottom-10 left-0 w-full overflow-hidden pointer-events-none opacity-[0.02]">
         <h1 className="text-[15vw] font-serif whitespace-nowrap text-center leading-none">
           TROPICAL WEDLOCK

@@ -6,8 +6,28 @@ const PriceProfessional = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  // --- DATA: Main Wedding Packages ---
+  const WHATSAPP_NUMBER = "94722006206";
+
+  // --- DATA: Reordered so "Most Popular" is FIRST ---
   const weddingPackages = [
+    {
+      title: "Tropical Collection",
+      price: "Rs. 179,000",
+      description: "The elite experience. Complete, romantic, and non-intrusive.",
+      features: [
+        "PRE-WEDDING SHOOT (Casual)",
+        "75 Retouched Pre-shoot images",
+        "Wedding Day Slideshow",
+        "2 Photographers (Wedding Day)",
+        "Up to 10 Hours Coverage",
+        "Fine Art Album (12x24, 60 Pages)",
+        "Family Album (10x20, 30 Pages)",
+        "2 Framed Enlargements (16x24)",
+        "1 Framed Enlargement (12x18)",
+        "100 Thank You Cards",
+      ],
+      highlight: true, // This is now first
+    },
     {
       title: "Digital Collection",
       price: "Rs. 75,000",
@@ -53,24 +73,6 @@ const PriceProfessional = () => {
       ],
       highlight: false,
     },
-    {
-      title: "Tropical Collection",
-      price: "Rs. 179,000",
-      description: "The elite experience. Complete, romantic, and non-intrusive.",
-      features: [
-        "PRE-WEDDING SHOOT (Casual)",
-        "75 Retouched Pre-shoot images",
-        "Wedding Day Slideshow",
-        "2 Photographers (Wedding Day)",
-        "Up to 10 Hours Coverage",
-        "Fine Art Album (12x24, 60 Pages)",
-        "Family Album (10x20, 30 Pages)",
-        "2 Framed Enlargements (16x24)",
-        "1 Framed Enlargement (12x18)",
-        "100 Thank You Cards",
-      ],
-      highlight: true,
-    },
   ];
 
   const otherServices = [
@@ -91,7 +93,16 @@ const PriceProfessional = () => {
     },
   ];
 
-  // --- LOGIC: Handle Mobile Swap ---
+  const handleBooking = (title, price) => {
+    const message = `Hi! I am interested in booking the *${title}* (${price}). Could you please provide availability and more details?`;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
+  };
+
+  const handleCustomRequest = () => {
+    const message = `Hi! I would like to discuss a custom photography package/request.`;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
+  };
+
   const handleNext = () => {
     setDirection(1);
     setActiveIndex((prev) => (prev + 1) % weddingPackages.length);
@@ -102,35 +113,45 @@ const PriceProfessional = () => {
     setActiveIndex((prev) => (prev - 1 + weddingPackages.length) % weddingPackages.length);
   };
 
-  // --- ANIMATION: Mobile Slide Effect ---
   const variants = {
     enter: (direction) => ({
-      x: direction > 0 ? 50 : -50,
+      x: direction > 0 ? "100%" : "-100%",
       opacity: 0,
+      scale: 0.95,
     }),
     center: {
+      zIndex: 1,
       x: 0,
       opacity: 1,
+      scale: 1,
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.2 },
+      },
     },
     exit: (direction) => ({
-      x: direction < 0 ? 50 : -50,
+      zIndex: 0,
+      x: direction < 0 ? "100%" : "-100%",
       opacity: 0,
-      position: "absolute",
+      scale: 0.95,
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.2 },
+      },
     }),
   };
 
-  // Helper component to render a single card
   const PackageCard = ({ pkg, isMobile = false }) => (
     <div className={`
       relative flex flex-col p-8 transition-all duration-300 h-full w-full bg-white
       ${pkg.highlight 
-        ? "border-2 border-emerald-800 shadow-2xl z-10" 
+        ? "border-2 border-emerald-800 shadow-2xl" 
         : "border-2 border-slate-100"
       }
       ${!isMobile && !pkg.highlight ? "hover:border-emerald-600 hover:shadow-xl" : ""}
     `}>
       {pkg.highlight && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-800 text-white text-[11px] font-medium px-4 py-1.5 uppercase tracking-widest shadow-md whitespace-nowrap">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-800 text-white text-[11px] font-medium px-4 py-1.5 uppercase tracking-widest shadow-md whitespace-nowrap z-20">
           Most Popular
         </div>
       )}
@@ -150,7 +171,9 @@ const PriceProfessional = () => {
         ))}
       </ul>
 
-      <button className={`
+      <button 
+        onClick={() => handleBooking(pkg.title, pkg.price)}
+        className={`
         w-full py-4 text-xs uppercase tracking-[0.2em] font-medium transition-colors duration-300 border-2
         ${pkg.highlight 
           ? "bg-emerald-800 text-white border-emerald-800 hover:bg-emerald-900" 
@@ -163,7 +186,7 @@ const PriceProfessional = () => {
   );
 
   return (
-    <section id="book" className="relative py-24 bg-white text-slate-800 overflow-hidden">
+    <section id="pricing" className="relative py-24 bg-white text-slate-800 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
         {/* --- HEADER --- */}
@@ -185,48 +208,57 @@ const PriceProfessional = () => {
         </motion.div>
 
         {/* --- MOBILE VIEW --- */}
-        <div className="block lg:hidden mb-24">
-            <div className="relative min-h-[600px]"> 
-                <AnimatePresence mode="wait" custom={direction}>
-                    <motion.div
-                        key={activeIndex}
-                        custom={direction}
-                        variants={variants}
-                        initial="enter"
-                        animate="center"
-                        exit="exit"
-                        transition={{ duration: 0.3 }}
-                        className="w-full"
-                    >
-                        <PackageCard pkg={weddingPackages[activeIndex]} isMobile={true} />
-                    </motion.div>
-                </AnimatePresence>
-            </div>
-
-            {/* Mobile Controls */}
-            <div className="flex items-center justify-between mt-8 px-4">
+        <div className="block lg:hidden mb-16">
+            <div className="relative flex items-center justify-center">
+                
+                {/* Left Button (Absolute Overlay) */}
                 <button 
                     onClick={handlePrev}
-                    className="p-4 rounded-full border border-slate-200 text-emerald-800 bg-white hover:bg-emerald-50 active:scale-95 transition-all shadow-sm"
+                    className="absolute left-[-10px] z-30 p-3 rounded-full bg-white shadow-xl border border-slate-100 text-emerald-800 active:scale-90 transition-transform"
                     aria-label="Previous Package"
                 >
                     <ChevronLeft size={24} />
                 </button>
-                <div className="flex gap-2">
-                    {weddingPackages.map((_, i) => (
-                        <div 
-                            key={i} 
-                            className={`h-1.5 rounded-full transition-all duration-300 ${i === activeIndex ? "w-8 bg-emerald-800" : "w-1.5 bg-slate-300"}`}
-                        />
-                    ))}
+
+                {/* Fix for Overlay Issue: 
+                   Added 'py-12' to create vertical breathing room so the 
+                   "Most Popular" badge (-top-4) is not clipped by overflow-hidden.
+                */}
+                <div className="w-full relative overflow-hidden py-12 px-1" style={{ minHeight: '680px' }}>
+                    <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                        <motion.div
+                            key={activeIndex}
+                            custom={direction}
+                            variants={variants}
+                            initial="enter"
+                            animate="center"
+                            exit="exit"
+                            className="w-full will-change-transform" 
+                        >
+                            <PackageCard pkg={weddingPackages[activeIndex]} isMobile={true} />
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
+
+                {/* Right Button (Absolute Overlay) */}
                 <button 
                     onClick={handleNext}
-                    className="p-4 rounded-full border border-slate-200 text-emerald-800 bg-white hover:bg-emerald-50 active:scale-95 transition-all shadow-sm"
+                    className="absolute right-[-10px] z-30 p-3 rounded-full bg-white shadow-xl border border-slate-100 text-emerald-800 active:scale-90 transition-transform"
                     aria-label="Next Package"
                 >
                     <ChevronRight size={24} />
                 </button>
+
+            </div>
+
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-4">
+                {weddingPackages.map((_, i) => (
+                    <div 
+                        key={i} 
+                        className={`h-1.5 rounded-full transition-all duration-300 ${i === activeIndex ? "w-8 bg-emerald-800" : "w-1.5 bg-slate-300"}`}
+                    />
+                ))}
             </div>
         </div>
 
@@ -278,7 +310,10 @@ const PriceProfessional = () => {
                         ))}
                     </ul>
                     <div className="text-center mt-auto">
-                        <button className="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-emerald-800 inline-flex items-center gap-2 transition-colors border-b border-transparent group-hover:border-emerald-800 pb-0.5">
+                        <button 
+                            onClick={() => handleBooking(svc.title, svc.price)}
+                            className="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-emerald-800 inline-flex items-center gap-2 transition-colors border-b border-transparent group-hover:border-emerald-800 pb-0.5"
+                        >
                             Inquire Now
                         </button>
                     </div>
@@ -286,9 +321,7 @@ const PriceProfessional = () => {
             ))}
         </div>
 
-        {/* ================================================== */}
-        {/* --- NEW SECTION: DOWNLOAD PDF BUTTON (GREEN) --- */}
-        {/* ================================================== */}
+        {/* --- DOWNLOAD PDF --- */}
         <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -296,16 +329,12 @@ const PriceProfessional = () => {
             className="flex flex-col items-center justify-center mb-16"
         >
             <p className="text-slate-400 text-xs italic mb-4">Prefer a printed copy?</p>
-            
             <a 
                 href="/pricing.pdf" 
                 download="Pricing_Guide.pdf"
                 className="group relative inline-flex items-center gap-4 px-10 py-5 bg-emerald-800 text-white overflow-hidden transition-all shadow-lg hover:shadow-emerald-900/30 rounded-sm"
             >
-                {/* Background Hover Effect: Darker Green Slide Up */}
                 <div className="absolute inset-0 bg-emerald-950 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-                
-                {/* Content */}
                 <span className="relative z-10 flex items-center gap-3">
                     <Download className="w-5 h-5 group-hover:animate-bounce" />
                     <span className="text-xs font-bold uppercase tracking-[0.2em]">Download Full Guide (PDF)</span>
@@ -313,33 +342,37 @@ const PriceProfessional = () => {
             </a>
         </motion.div>
 
-        {/* --- BOTTOM INFO BOX --- */}
+        {/* --- BOTTOM INFO --- */}
         <div className="max-w-5xl mx-auto border-t border-slate-200 pt-16">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="flex items-center gap-6 p-8 bg-white border-2 border-slate-100 hover:border-emerald-600 transition-colors duration-300">
                     <div className="p-4 bg-emerald-50 text-emerald-800 rounded-full">
-                    <Clock size={24} strokeWidth={1.5} />
+                        <Clock size={24} strokeWidth={1.5} />
                     </div>
                     <div>
-                    <h4 className="font-medium text-slate-900 uppercase tracking-widest text-xs mb-2">
-                        Extended Hours
-                    </h4>
-                    <p className="text-slate-500 text-sm">
-                        Available at <span className="text-emerald-800 font-medium">Rs. 5,000/hr</span>.
-                    </p>
+                        <h4 className="font-medium text-slate-900 uppercase tracking-widest text-xs mb-2">
+                            Extended Hours
+                        </h4>
+                        <p className="text-slate-500 text-sm">
+                            Available at <span className="text-emerald-800 font-medium">Rs. 5,000/hr</span>.
+                        </p>
                     </div>
                 </div>
-                <div className="flex items-center gap-6 p-8 bg-white border-2 border-slate-100 hover:border-emerald-600 transition-colors duration-300">
+                
+                <div 
+                    onClick={handleCustomRequest}
+                    className="flex items-center gap-6 p-8 bg-white border-2 border-slate-100 hover:border-emerald-600 transition-colors duration-300 cursor-pointer"
+                >
                     <div className="p-4 bg-emerald-50 text-emerald-800 rounded-full">
-                    <Plus size={24} strokeWidth={1.5} />
+                        <Plus size={24} strokeWidth={1.5} />
                     </div>
                     <div>
-                    <h4 className="font-medium text-slate-900 uppercase tracking-widest text-xs mb-2">
-                        Custom Requests
-                    </h4>
-                    <p className="text-slate-500 text-sm">
-                        Contact us for a <span className="text-emerald-800 font-medium underline decoration-1 underline-offset-2">custom quote</span>.
-                    </p>
+                        <h4 className="font-medium text-slate-900 uppercase tracking-widest text-xs mb-2">
+                            Custom Requests
+                        </h4>
+                        <p className="text-slate-500 text-sm">
+                            Contact us for a <span className="text-emerald-800 font-medium underline decoration-1 underline-offset-2">custom quote</span>.
+                        </p>
                     </div>
                 </div>
             </div>
