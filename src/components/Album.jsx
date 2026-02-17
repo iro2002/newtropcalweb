@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { X, ArrowRight, MapPin, ArrowDown, ChevronDown, Calendar } from "lucide-react";
+import { X, ArrowRight, ArrowDown, ChevronDown, Calendar } from "lucide-react";
 
 // ------------------------------------------------------------------
 // --- IMAGES IMPORT SECTION ---
@@ -168,80 +168,62 @@ const albums = [
   {
     id: 1,
     couple: "NETHMI & HASARANGA",
-    location: "Nuwara Eliya",
-    date: "February",
     description: "Amidst the mist-laden hills and colonial whispers.",
     cover: a1_cover,
     images: [a1_1, a1_2, a1_3, a1_4, a1_5, a1_6, a1_7, a1_8, a1_9, a1_10, a1_11, a1_12, a1_13, a1_14, a1_15]
   },
   {
     id: 2,
-    couple: "Nethmi & Kasun",
-    location: "Galle Fort",
-    date: "January",
+    couple: "DUSHANI & AYATHRU",
     description: "Where ancient ramparts meet the endless azure sea.",
     cover: a2_cover,
     images: [a2_1, a2_2, a2_3, a2_4, a2_5, a2_6, a2_7, a2_8, a2_9, a2_10]
   },
   {
     id: 3,
-    couple: "Anjali & Roshan",
-    location: "Colombo",
-    date: "February",
+    couple: "MADUSHI & KAVINDA",
     description: "An urban symphony of love in the city lights.",
     cover: a3_cover,
     images: [a3_1, a3_3, a3_4, a3_5, a3_6, a3_7, a3_8, a3_9, a3_10, a3_11, a3_12, a3_13, a3_14, a3_15]
   },
   {
     id: 4,
-    couple: "Yasara & Dinesh",
-    location: "Sinharaja",
-    date: "March",
+    couple: "OSHI & NALAKA",
     description: "Lost in the emerald embrace of the rainforest.",
     cover: a4_cover,
     images: [a4_1, a4_2, a4_3, a4_4, a4_5, a4_6, a4_7, a4_8, a4_9, a4_10, a4_11, a4_12]
   },
   {
     id: 5,
-    couple: "Dilshan & Kaveesha",
-    location: "Mirissa",
-    date: "April",
+    couple: "SEWMINI & ANJANA",
     description: "Golden sands and sunset horizons.",
     cover: a5_cover, 
     images: [a5_1, a5_2, a5_3, a5_4, a5_5, a5_6, a5_7, a5_8, a5_9, a5_10, a5_11, a5_12, a5_13, a5_14]
   },
   {
     id: 6,
-    couple: "Sajini & Malith",
-    location: "Kandy",
-    date: "May",
+    couple: "SAHEENA & SHANAKA",
     description: "Sacred vows exchanged in the heart of the hill capital.",
     cover: a6_cover,
     images: [a6_1, a6_2, a6_3, a6_4, a6_5, a6_6, a6_7, a6_8, a6_9, a6_10, a6_11, a6_12, a6_13, a6_14, a6_15]
   },
   {
     id: 7,
-    couple: "Tiana & Shehan",
-    location: "Ella",
-    date: "June",
+    couple: "KAWEE & YOHAN",
     description: "Love amongst the tea plantations and nine arches.",
     cover: a7_cover,
     images: [a7_1, a7_2, a7_3, a7_4, a7_5, a7_6, a7_7, a7_8, a7_9, a7_10, a7_11, a7_12, a7_13, a7_14, a7_15]
   },
   {
     id: 8,
-    couple: "Praveen & Shani",
-    location: "Jaffna",
-    date: "July",
+    couple: "CHALANI & KAVEEN",
     description: "Vibrant colors and palmyrah breeze.",
     cover: a8_cover,
     images: [a8_1, a8_2, a8_3, a8_4, a8_5, a8_6, a8_7, a8_8, a8_9, a8_10, a8_11, a8_12, a8_13, a8_14, a8_15]
   },
   {
     id: 9,
-    couple: "Amara & Kevin",
-    location: "Bentota",
-    date: "August",
+    couple: "KAWYA & ASHAN",
     description: "River safaris and twilight boat rides.",
     cover: a9_cover,
     images: [a9_1, a9_2, a9_3, a9_4, a9_5, a9_6, a9_7, a9_8, a9_9, a9_10, a9_11, a9_12, a9_13, a9_14, a9_15]
@@ -275,7 +257,7 @@ const Album = () => {
 
   return (
     <>
-      <section ref={targetRef} className="hidden md:block relative h-[1200vh] bg-white">
+      <section id="gallery" ref={targetRef} className="hidden md:block relative h-[1200vh] bg-white">
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
           
           <motion.div 
@@ -428,7 +410,6 @@ const FullAlbumDetail = ({ album, onClose }) => {
           <div className="pt-12 md:pt-20 text-center pb-12"><button onClick={onClose} className="text-emerald-600 underline underline-offset-4 hover:text-emerald-800">Back to Gallery</button></div>
         </div>
         <div className="w-full lg:w-2/5 lg:sticky lg:top-0 lg:h-screen p-6 md:p-16 lg:p-24 flex flex-col justify-center bg-neutral-50/50 border-l border-neutral-100">
-          <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-600 mb-6 md:mb-8 mt-4 md:mt-0"><MapPin size={12} />{album.location}<div className="h-px w-6 bg-emerald-200" /><span>{album.date}</span></div>
           <h2 className="text-4xl md:text-7xl font-serif text-neutral-900 leading-[1.1] mb-6 md:mb-8">{album.couple}</h2>
           <p className="text-neutral-500 font-light leading-relaxed max-w-sm mb-8 md:mb-12 text-sm md:text-base">{album.description}</p>
           <div className="flex items-center gap-3 text-neutral-400 animate-bounce"><ArrowDown size={18} strokeWidth={1} /><span className="text-[9px] uppercase tracking-widest">Scroll to view</span></div>
