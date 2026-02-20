@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import heroImage from "../images/hero.jpg";
 
 const BACKGROUND_IMAGE = heroImage; 
 
 const Hero = () => {
+  // 1. Add state to track when the image finishes downloading
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
     <div className="relative w-full h-screen overflow-hidden bg-[#050505] text-white flex items-center justify-center">
       
@@ -12,32 +15,31 @@ const Hero = () => {
       <div className="absolute inset-0 z-0">
         <motion.div
           initial={{ scale: 1 }}
-          animate={{ scale: 1.05 }} // Reduced zoom amount to keep more of the image visible
+          animate={{ scale: 1.05 }}
           transition={{ 
             duration: 20, 
             ease: "linear", 
             repeat: Infinity, 
             repeatType: "reverse" 
           }}
-          className="w-full h-full"
+          className="w-full h-full bg-[#1a1a1a]" // Added a slightly lighter dark fallback color
         >
-          <img
+          {/* 2. Changed to motion.img to animate the opacity on load */}
+          <motion.img
             src={BACKGROUND_IMAGE}
             alt="Tropical Wedlock Background"
-            // CHANGE 1: 'object-cover' fills the screen. 
-            // If you want to see the WHOLE image with black bars, change to 'object-contain'
-            // CHANGE 2: Removed 'opacity-80' so it is fully bright
-            className="w-full h-full object-cover object-center opacity-100"
+            className="w-full h-full object-cover object-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isLoaded ? 1 : 0 }} // Remains 0 until downloaded
+            transition={{ duration: 1.5, ease: "easeInOut" }} // Smooth 1.5s fade
+            onLoad={() => setIsLoaded(true)} // 3. Trigger state change when ready
           />
           
-          {/* CHANGE 3: Made overlay much lighter (black/10 instead of black/30) 
-              so the image looks "fuller" and clearer */}
           <div className="absolute inset-0 bg-black/10" />
         </motion.div>
       </div>
 
       {/* --- CENTER CONTENT --- */}
-      {/* Added a slight text shadow so text is readable even on a bright 'full' image */}
       <div className="relative z-10 text-center px-6 drop-shadow-lg">
         
         {/* 'Tropical' */}

@@ -8,26 +8,8 @@ const PriceProfessional = () => {
 
   const WHATSAPP_NUMBER = "94722006206";
 
-  // --- DATA: Reordered so "Most Popular" is FIRST ---
+  // --- DATA: Sorted from Lowest Price to Highest Price ---
   const weddingPackages = [
-    {
-      title: "Tropical Collection",
-      price: "Rs. 179,000",
-      description: "The elite experience. Complete, romantic, and non-intrusive.",
-      features: [
-        "PRE-WEDDING SHOOT (Casual)",
-        "75 Retouched Pre-shoot images",
-        "Wedding Day Slideshow",
-        "2 Photographers (Wedding Day)",
-        "Up to 10 Hours Coverage",
-        "Fine Art Album (12x24, 60 Pages)",
-        "Family Album (10x20, 30 Pages)",
-        "2 Framed Enlargements (16x24)",
-        "1 Framed Enlargement (12x18)",
-        "100 Thank You Cards",
-      ],
-      highlight: true, // This is now first
-    },
     {
       title: "Digital Collection",
       price: "Rs. 75,000",
@@ -72,6 +54,24 @@ const PriceProfessional = () => {
         "100 Thank You Cards",
       ],
       highlight: false,
+    },
+    {
+      title: "Tropical Collection",
+      price: "Rs. 179,000",
+      description: "The elite experience. Complete, romantic, and non-intrusive.",
+      features: [
+        "PRE-WEDDING SHOOT (Casual)",
+        "75 Retouched Pre-shoot images",
+        "Wedding Day Slideshow",
+        "2 Photographers (Wedding Day)",
+        "Up to 10 Hours Coverage",
+        "Fine Art Album (12x24, 60 Pages)",
+        "Family Album (10x20, 30 Pages)",
+        "2 Framed Enlargements (16x24)",
+        "1 Framed Enlargement (12x18)",
+        "100 Thank You Cards",
+      ],
+      highlight: true,
     },
   ];
 
@@ -211,7 +211,7 @@ const PriceProfessional = () => {
         <div className="block lg:hidden mb-16">
             <div className="relative flex items-center justify-center">
                 
-                {/* Left Button (Absolute Overlay) */}
+                {/* Left Button */}
                 <button 
                     onClick={handlePrev}
                     className="absolute left-[-10px] z-30 p-3 rounded-full bg-white shadow-xl border border-slate-100 text-emerald-800 active:scale-90 transition-transform"
@@ -220,10 +220,6 @@ const PriceProfessional = () => {
                     <ChevronLeft size={24} />
                 </button>
 
-                {/* Fix for Overlay Issue: 
-                   Added 'py-12' to create vertical breathing room so the 
-                   "Most Popular" badge (-top-4) is not clipped by overflow-hidden.
-                */}
                 <div className="w-full relative overflow-hidden py-12 px-1" style={{ minHeight: '680px' }}>
                     <AnimatePresence initial={false} custom={direction} mode="popLayout">
                         <motion.div
@@ -240,7 +236,7 @@ const PriceProfessional = () => {
                     </AnimatePresence>
                 </div>
 
-                {/* Right Button (Absolute Overlay) */}
+                {/* Right Button */}
                 <button 
                     onClick={handleNext}
                     className="absolute right-[-10px] z-30 p-3 rounded-full bg-white shadow-xl border border-slate-100 text-emerald-800 active:scale-90 transition-transform"

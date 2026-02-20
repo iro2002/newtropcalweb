@@ -140,7 +140,6 @@ import a8_13 from "../images/album8/13.jpg";
 import a8_14 from "../images/album8/14.jpg";
 import a8_15 from "../images/album8/15.jpg";
 
-
 // --- ALBUM 9 ---
 import a9_cover from "../images/album9/1.jpg";
 import a9_1 from "../images/album9/1.jpg";
@@ -231,6 +230,29 @@ const albums = [
 ];
 
 // ------------------------------------------------------------------
+// --- SMOOTH IMAGE LOADER COMPONENT ---
+// ------------------------------------------------------------------
+const SmoothImage = ({ src, alt, className }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <motion.img
+      src={src}
+      alt={alt}
+      loading="lazy" // Native lazy loading to save bandwidth
+      initial={{ opacity: 0, filter: "blur(10px)" }} 
+      animate={{ 
+        opacity: isLoaded ? 1 : 0,
+        filter: isLoaded ? "blur(0px)" : "blur(10px)"
+      }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      onLoad={() => setIsLoaded(true)}
+      className={className}
+    />
+  );
+};
+
+// ------------------------------------------------------------------
 // --- MAIN COMPONENT ---
 // ------------------------------------------------------------------
 
@@ -243,9 +265,6 @@ const Album = () => {
     target: targetRef,
   });
 
-  // --- FIX 1: Adjusted Scroll Limit ---
-  // Changed from -85% to -72%. 
-  // This stops the scroll sooner so you don't see the empty void at the end.
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-72%"]);
   
   const textOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
@@ -288,7 +307,11 @@ const Album = () => {
                   <div className="absolute top-4 right-4 z-20 bg-white/90 backdrop-blur-md px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-emerald-900 rounded-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
                     Open Story
                   </div>
-                  <img src={album.cover} alt={album.couple} className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                  <SmoothImage 
+                    src={album.cover} 
+                    alt={album.couple} 
+                    className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" 
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
                 <div className="mt-5 flex justify-between items-start">
@@ -326,15 +349,13 @@ const Album = () => {
               </div>
             </div>
             
-            {/* --- FIX 2: Reduced End Spacer --- */}
-            {/* Changed from 35vw (huge) to w-[5vw] (small) */}
             <div className="w-[5vw] flex-shrink-0" />
             
           </motion.div>
         </div>
       </section>
 
-      {/* Mobile View & Lightbox (No Changes Needed Here) */}
+      {/* Mobile View */}
       <section className="md:hidden bg-white py-12 px-6">
         <div className="mb-12 text-center">
           <h2 className="text-5xl font-serif text-neutral-900 leading-[0.9]">Selected <br /><span className="italic font-light text-emerald-700">Love Stories</span></h2>
@@ -352,9 +373,13 @@ const Album = () => {
                 onClick={() => setSelectedAlbum(album)}
                 className="group cursor-pointer"
               >
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm mb-4 shadow-lg">
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm mb-4 shadow-lg bg-neutral-100">
                   <div className="absolute top-4 right-4 z-20 bg-white/90 backdrop-blur-md px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-emerald-900 rounded-sm">Open</div>
-                  <img src={album.cover} alt={album.couple} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <SmoothImage 
+                    src={album.cover} 
+                    alt={album.couple} 
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                  />
                 </div>
                 <div>
                   <h3 className="text-3xl font-serif text-neutral-900 italic">{album.couple}</h3>
@@ -405,8 +430,17 @@ const FullAlbumDetail = ({ album, onClose }) => {
       <button onClick={onClose} className="fixed top-6 right-6 z-[120] p-3 bg-white/80 backdrop-blur-md rounded-full shadow-lg border border-neutral-100 text-neutral-900 hover:text-emerald-600 hover:scale-110 transition-all duration-300"><X size={24} strokeWidth={1.5} /></button>
       <div className="flex flex-col-reverse lg:flex-row min-h-screen">
         <div className="w-full lg:w-3/5 p-4 md:p-12 space-y-8 md:space-y-12">
-          <img src={album.cover} alt="Cover" className="w-full max-w-3xl mx-auto h-auto object-cover rounded-sm shadow-sm mb-8 md:mb-12" />
-          {album.images.map((img, idx) => (<img key={idx} src={img} alt={`Detail ${idx}`} className="w-full max-w-3xl mx-auto h-auto object-cover rounded-sm shadow-sm" />))}
+          
+          <div className="bg-neutral-50 rounded-sm max-w-3xl mx-auto">
+            <SmoothImage src={album.cover} alt="Cover" className="w-full h-auto object-cover rounded-sm shadow-sm" />
+          </div>
+
+          {album.images.map((img, idx) => (
+            <div key={idx} className="bg-neutral-50 rounded-sm max-w-3xl mx-auto">
+               <SmoothImage src={img} alt={`Detail ${idx}`} className="w-full h-auto object-cover rounded-sm shadow-sm" />
+            </div>
+          ))}
+          
           <div className="pt-12 md:pt-20 text-center pb-12"><button onClick={onClose} className="text-emerald-600 underline underline-offset-4 hover:text-emerald-800">Back to Gallery</button></div>
         </div>
         <div className="w-full lg:w-2/5 lg:sticky lg:top-0 lg:h-screen p-6 md:p-16 lg:p-24 flex flex-col justify-center bg-neutral-50/50 border-l border-neutral-100">
