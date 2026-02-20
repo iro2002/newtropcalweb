@@ -186,7 +186,7 @@ const PriceProfessional = () => {
   );
 
   return (
-    <section id="pricing" className="relative py-24 bg-white text-slate-800 overflow-hidden">
+    <section id="pricing" className="relative py-24 bg-white text-slate-800 overflow-x-clip">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
         {/* --- HEADER --- */}
@@ -209,18 +209,19 @@ const PriceProfessional = () => {
 
         {/* --- MOBILE VIEW --- */}
         <div className="block lg:hidden mb-16">
-            <div className="relative flex items-center justify-center">
+            <div className="relative flex items-center justify-center w-full">
                 
-                {/* Left Button */}
+                {/* Left Button - Fixed position, sits above the sliding cards */}
                 <button 
                     onClick={handlePrev}
-                    className="absolute left-[-10px] z-30 p-3 rounded-full bg-white shadow-xl border border-slate-100 text-emerald-800 active:scale-90 transition-transform"
+                    className="absolute left-0 z-30 p-2.5 rounded-full bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-slate-100 text-emerald-800 active:scale-95 transition-all hover:bg-slate-50"
                     aria-label="Previous Package"
                 >
                     <ChevronLeft size={24} />
                 </button>
 
-                <div className="w-full relative overflow-hidden py-12 px-1" style={{ minHeight: '680px' }}>
+                {/* Inner track where cards slide (overflow-hidden prevents horizontal scrollbars here) */}
+                <div className="w-full px-5 overflow-hidden py-4" style={{ minHeight: '680px' }}>
                     <AnimatePresence initial={false} custom={direction} mode="popLayout">
                         <motion.div
                             key={activeIndex}
@@ -229,17 +230,17 @@ const PriceProfessional = () => {
                             initial="enter"
                             animate="center"
                             exit="exit"
-                            className="w-full will-change-transform" 
+                            className="w-full will-change-transform drop-shadow-sm" 
                         >
                             <PackageCard pkg={weddingPackages[activeIndex]} isMobile={true} />
                         </motion.div>
                     </AnimatePresence>
                 </div>
 
-                {/* Right Button */}
+                {/* Right Button - Fixed position, sits above the sliding cards */}
                 <button 
                     onClick={handleNext}
-                    className="absolute right-[-10px] z-30 p-3 rounded-full bg-white shadow-xl border border-slate-100 text-emerald-800 active:scale-90 transition-transform"
+                    className="absolute right-0 z-30 p-2.5 rounded-full bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-slate-100 text-emerald-800 active:scale-95 transition-all hover:bg-slate-50"
                     aria-label="Next Package"
                 >
                     <ChevronRight size={24} />
@@ -247,8 +248,8 @@ const PriceProfessional = () => {
 
             </div>
 
-            {/* Dots */}
-            <div className="flex justify-center gap-2 mt-4">
+            {/* Pagination Dots */}
+            <div className="flex justify-center gap-2 mt-2">
                 {weddingPackages.map((_, i) => (
                     <div 
                         key={i} 
@@ -290,7 +291,7 @@ const PriceProfessional = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "-50px" }}
                     className="flex flex-col bg-white border-2 border-slate-100 p-8 hover:border-emerald-600 hover:shadow-xl transition-all duration-300 group"
                 >
                     <div className="text-center mb-6">
