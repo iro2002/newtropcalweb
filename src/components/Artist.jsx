@@ -11,42 +11,42 @@ const testimonials = [
     id: 1,
     quote: "Thank you Aiya for the pictures, and all the time it took for you to catch those precious moments. Highly recommended. Tropical Wedlock is the best!",
     name: "Kalhara Samarakoon",
-    image: "https://scontent.fcmb10-1.fna.fbcdn.net/v/t39.30808-6/605830690_3998790273765306_7850183845845122017_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=c32D7qyvsCsQ7kNvwGHlgd3&_nc_oc=Adnkxpan8U38kA-soWg-xxmkYYwqWPy7JWM2EUZf4q2vWTmWX6bLBNm4mVmQEnocCG8&_nc_zt=23&_nc_ht=scontent.fcmb10-1.fna&_nc_gid=H4EtrALHyGCUHlfwKn4f9w&oh=00_Afuj90ABnotFcNqZXr9hB9_WE3DdEYx1FDDL3WDkuMcNdg&oe=699E005B",
+    image: "https://scontent.fcmb10-1.fna.fbcdn.net/v/t39.30808-6/605830690_3998790273765306_7850183845845122017_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=4ntaQ5JdN8EQ7kNvwG02sXO&_nc_oc=AdnnKpTCw0ZCiO5dTUbdM2yGy3ah05KHl_0EA0aJM5OyvYDnbDKpd4WvPJFV3sGWMNE&_nc_zt=23&_nc_ht=scontent.fcmb10-1.fna&_nc_gid=ZaUC3LvGEMoyVVsp1ncsLA&_nc_ss=8&oh=00_AfxmhqO_ZN-BUJ_k6yPXgshx_oziBdtpjL8PrfxCpZ9rtw&oe=69C00F1B",
     title: "Wedding Client",
   },
   {
     id: 2,
     quote: "Wow! You totally nailed the shoot day—the photos are amazing! You captured everything so perfectly, and I loved how you made the whole process so smooth and fun. Can’t wait to work together again!",
     name: "Karan Karthik",
-    image: "https://scontent.fcmb10-1.fna.fbcdn.net/v/t39.30808-6/605780218_122268465152078393_4722315383577545063_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=vIdye8-VFLwQ7kNvwFwNYVX&_nc_oc=AdmKuZmmIjs0CN_OY2v0fG3Fau1Mu4jakCKxVoYVJ4n7MWwDeo2lJNU4jHtb06yA_B4&_nc_zt=23&_nc_ht=scontent.fcmb10-1.fna&_nc_gid=S4j8rRVC0dBd1q_9Bc2daQ&oh=00_AfvbZxLT1jmxguPqlCZIT5NUBmlCDELEC_icPbsRVW8M7A&oe=699DE550",
+    image: "https://scontent.fcmb10-1.fna.fbcdn.net/v/t39.30808-1/605780218_122268465152078393_4722315383577545063_n.jpg?stp=dst-jpg_s160x160_tt6&_nc_cat=109&ccb=1-7&_nc_sid=1d2534&_nc_ohc=ZJeSY_WyNOwQ7kNvwE3XQDh&_nc_oc=AdmD8m5edrocv370vMHpnmG60Dw7jBPUjheEwmnuczZETJkZTKF__e6rIta5DwAPV30&_nc_zt=24&_nc_ht=scontent.fcmb10-1.fna&_nc_gid=H25xJXnEq_23vtSAD0BqAg&_nc_ss=8&oh=00_AfwFjYgCsPSsqgRGm5L_k35Vt7RwcjXH0x6A3xGce7Jvjg&oe=69C023EB",
     title: "Wedding Client",
   },
   {
     id: 3,
     quote: "A heartfelt thank you to Tropical Wedlock for beautifully capturing the essence of our love story. Your work was nothing short of amazing, and we’re so grateful for the magic you brought to our special day.",
     name: "Samudra Mihirani",
-    image: "https://scontent.fcmb8-1.fna.fbcdn.net/v/t39.30808-6/637282371_2065936330853460_3235326806773274092_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=7QPZDzZB4ZsQ7kNvwHnTbTd&_nc_oc=AdlA74cdN0_d5Q4VAXCVQf8i-RqEQEreqdj-Md_8XQ3kUpMKAyEYDBPuK0kxXEZsfBU&_nc_zt=23&_nc_ht=scontent.fcmb8-1.fna&_nc_gid=KKkwUCAj-SN-XOFivC73mw&oh=00_AfsqDU7n2uZGYPUHq9AjySgVnD8H2zMyqc-3RBo7_rNSPg&oe=699DDAF9",
+    image: "https://scontent.fcmb8-1.fna.fbcdn.net/v/t39.30808-6/637282371_2065936330853460_3235326806773274092_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=e-suUjGjKoIQ7kNvwGsEOCk&_nc_oc=Adm-fH4RCzWtzzmoVOt35qHxPRBzP4KSlNe4M-Ezi2DO6d9zjwSsqv2-vg0AnRNOJeI&_nc_zt=23&_nc_ht=scontent.fcmb8-1.fna&_nc_gid=joabhreEDd3562PFXE_2bA&_nc_ss=8&oh=00_AfwHnXW_keC-9fYVu2eDsTwjpQJskREIrEzyHjP1CdnNzQ&oe=69C021F9",
     title: "Wedding Client",
   },
   {
     id: 4,
     quote: "Thank you so much for making our day so special! You were so friendly and made us feel so comfortable throughout. The photos are absolutely stunning...Thank you again for capturing our moments so beautifully.Highly recommend you to anyone looking for a photographer who truly cares...",
     name: "Inoshi Rajapaksha ",
-    image: "https://scontent.fcmb10-1.fna.fbcdn.net/v/t39.30808-6/475479839_583089907954141_6209622937666385155_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=sInn1fx4n-8Q7kNvwEm9eEz&_nc_oc=Admqa1fMGoalakZTJGyQg7kQSINWg5c6zeHiGZPKV0vwzQ7n1EyKGrFbFIA4I-31uPY&_nc_zt=23&_nc_ht=scontent.fcmb10-1.fna&_nc_gid=I8E1RAXFWZVFAseWz6e99A&oh=00_AftFXm39ZJHlBb25VQSOLjx5BqPKYzZpytw4QxZp0xbW6g&oe=6999C1A4", // Placeholder or Replace with real URL
+    image: "https://scontent.fcmb10-1.fna.fbcdn.net/v/t39.30808-1/475479839_583089907954141_6209622937666385155_n.jpg?stp=c121.0.717.717a_dst-jpg_s200x200_tt6&_nc_cat=110&ccb=1-7&_nc_sid=e99d92&_nc_ohc=u_DzRjEKnuEQ7kNvwHIzXEF&_nc_oc=AdmRVZmKZNK3q85wyyvPLMLtVbNBOxqmGyBpXUJPVKkhMMx9xW0RCYJPYW7nCtlTf_U&_nc_zt=24&_nc_ht=scontent.fcmb10-1.fna&_nc_gid=oXGak6WtQ0ikR3g-4kP8AA&_nc_ss=8&oh=00_Afy-e9HP9ff4tjxPPWrlLAXxrufGcrULOTyA023PDbSROQ&oe=69BFFAE6", // Placeholder or Replace with real URL
     title: "Wedding Client",
   },
   {
     id: 5,
     quote: "We had an amazing experience with Asela during our photoshoot. He made us feel so comfortable, which helped him capture our natural looks perfectly. The photos are genuine and truly reflect who we are. Thank you, Asela, for these beautiful memories!",
     name: "Yohan Pieris",
-    image: "https://scontent.fcmb10-1.fna.fbcdn.net/v/t39.30808-6/198742358_4213923708695108_6115057144563537130_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=gJNUbcqtKIUQ7kNvwE4m8xP&_nc_oc=AdkDRDIp4z7OryNiT5U-v-VRDd0Fa7ZckWxDwGUfIr5_FaMOXbW0AeeyzsiYfDwOQS8&_nc_zt=23&_nc_ht=scontent.fcmb10-1.fna&_nc_gid=oWxwD3aI5qMSgnz5B2TYkw&oh=00_Afs93PsegrDAT5Ugfnp9I_JVprzGY305FVrxXEUD93ODMg&oe=6999B956", // Placeholder or Replace with real URL
+    image: "https://scontent.fcmb10-1.fna.fbcdn.net/v/t39.30808-6/641474256_26079048665089298_1475393872858449358_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=eAyDH4mywgIQ7kNvwHGmFxZ&_nc_oc=AdnCv_LNV29AxFCAb9RqfHeG60QnV9a-uRYw0Yx5ZGiX4JIwAGnsaeJY4vwy7bGUMf8&_nc_zt=23&_nc_ht=scontent.fcmb10-1.fna&_nc_gid=cogLuyHDkwPmGCgTX7sICw&_nc_ss=8&oh=00_AfwElZJeF0ynFeMRnRhjjXxm3iQMyOXT0SgR1IHqB1ROFQ&oe=69C01FBD", // Placeholder or Replace with real URL
     title: "Wedding Client",
   },
   {
     id: 6,
     quote: "The best photographer. I was very lucky to selected the tropical wedlock for my wedding day & Home coming photography.. Actually you have more quick, unique and very responsible service. I know one day Asela aiya can become the top talented photographer in Sri Lanka. I wish you and ur crew. ",
     name: "Sandika Dulanjali Hewavitharana",
-    image: "https://scontent.fcmb8-1.fna.fbcdn.net/v/t39.30808-6/473191892_1172797934414375_7966428110381331160_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Fz1gSIxS0P0Q7kNvwHUCSaD&_nc_oc=AdnifolzJ5rM6wZVv9aYUnDLtjDeHnnwpLf1RX46zXSfNc216NPYneFStqm_0MtPZBQ&_nc_zt=23&_nc_ht=scontent.fcmb8-1.fna&_nc_gid=3P44hiSkpguv-7lLukmbcA&oh=00_Afsa5fHY_nWvbB24qqGm5mBJmzmDdvepDKlD-8Ivs71NVQ&oe=6999AA8F", // Placeholder or Replace with real URL
+    image: "https://scontent.fcmb8-1.fna.fbcdn.net/v/t39.30808-6/473191892_1172797934414375_7966428110381331160_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=7xvWsDkvwf8Q7kNvwGyehvj&_nc_oc=Adk6n2KAuRDmX3qhsQWXDgyBGop9LkXZTLJdAAPxfil6kw6dzQjhmQWrqa4zrgq8-3E&_nc_zt=23&_nc_ht=scontent.fcmb8-1.fna&_nc_gid=cb8agKpfm2I_vUzzgbLjHw&_nc_ss=8&oh=00_AfzuqlNK0-ucxxHafrneCd6ztjJj_bN4ACTci-AOsR-L1A&oe=69C01E4F", // Placeholder or Replace with real URL
     title: "Wedding Client",
   },
 ];
